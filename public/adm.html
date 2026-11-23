@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Netflix - Administração</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #141414;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* CABEÇALHO */
+
+        .navbar {
+            background: #080808;
+            padding: 20px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #e50914;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            color: #e50914;
+            font-size: 30px;
+            font-weight: 900;
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: #e50914;
+        }
+
+        /* BOTÃO SAIR */
+
+        .btn-sair {
+            background: #e50914;
+            color: white;
+            border: none;
+            padding: 11px 22px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .btn-sair:hover {
+            background: #b20710;
+            transform: translateY(-2px);
+        }
+
+        /* CONTAINER PRINCIPAL */
+
+        .container-admin {
+            width: 94%;
+            max-width: 1500px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #1d1d1d;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,.4);
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .subtitulo {
+            color: #999;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        /* BUSCA */
+
+        .busca-box {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .busca-box input {
+            flex: 1;
+            min-width: 200px;
+            padding: 14px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background: #292929;
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .busca-box input:focus {
+            border-color: #e50914;
+            box-shadow: 0 0 0 2px rgba(229,9,20,.15);
+        }
+
+        /* BOTÕES */
+
+        .btn-pinterest {
+            background: #e50914;
+            color: white;
+            border: none;
+            padding: 13px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .btn-pinterest:hover {
+            background: #b20710;
+            transform: translateY(-2px);
+        }
+
+        .btn-secundario {
+            background: #333;
+            color: white;
+            border: 1px solid #555;
+            padding: 13px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .btn-secundario:hover {
+            background: #555;
+        }
+
+        /* TABELA */
+
+        .tabela-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        table {
+            width: 100%;
+            min-width: 1200px;
+            border-collapse: collapse;
+            background: #222;
+        }
+
+        thead {
+            background: #e50914;
+            color: white;
+        }
+
+        th {
+            padding: 16px 12px;
+            text-align: left;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 14px 12px;
+            border-bottom: 1px solid #383838;
+            color: #ddd;
+            font-size: 13px;
+        }
+
+        tbody tr {
+            transition: .2s;
+        }
+
+        tbody tr:hover {
+            background: #303030;
+        }
+
+        /* PAINEL DE EDIÇÃO */
+
+        .painel-edicao {
+            margin-top: 40px;
+            padding: 30px;
+            background: #111;
+            border: 1px solid #444;
+            border-left: 5px solid #e50914;
+            border-radius: 8px;
+        }
+
+        .painel-edicao h2 {
+            margin-bottom: 25px;
+            font-size: 23px;
+            color: #e50914;
+        }
+
+        /* GRID DO FORMULÁRIO */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            color: #ccc;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            background: #292929;
+            border: 1px solid #555;
+            border-radius: 5px;
+            color: white;
+            outline: none;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        .form-group input:focus {
+            border-color: #e50914;
+            box-shadow: 0 0 0 2px rgba(229,9,20,.15);
+        }
+
+        .form-group input:disabled {
+            background: #171717;
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        /* AÇÕES DO PAINEL */
+
+        .acoes-edicao {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 18px 20px;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+
+            .container-admin {
+                width: 96%;
+                padding: 20px 14px;
+                margin: 20px auto;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: span 1;
+            }
+
+            .busca-box {
+                flex-direction: column;
+            }
+
+            .busca-box input,
+            .busca-box button {
+                width: 100%;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .painel-edicao {
+                padding: 20px 15px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+
+    <header class="navbar">
+
+        <a href="boasvindas.html" class="logo">
+            NETFLIX <span style="color:white;font-size:16px;">ADMIN</span>
+        </a>
+
+        <div class="nav-links">
+
+            <a href="boasvindas.html">Boas-vindas</a>
+
+            <button onclick="sair()" class="btn-sair">
+                Sair
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+
+    <main class="container-admin">
+
+        <h1>Administração de Usuários</h1>
+
+        <p class="subtitulo">
+            Gerencie os usuários cadastrados na plataforma Netflix.
+            Busque por CPF, visualize, edite ou exclua contas.
+        </p>
+
+        <!-- BUSCA -->
+
+        <div class="busca-box">
+
+            <input
+                type="text"
+                id="campoBuscaCPF"
+                placeholder="Digite o CPF do usuário..."
+            >
+
+            <button
+                type="button"
+                onclick="buscarPorCPF()"
+                class="btn-pinterest"
+            >
+                Buscar
+            </button>
+
+            <button
+                type="button"
+                onclick="listarTodos()"
+                class="btn-secundario"
+            >
+                Listar Todos
+            </button>
+
+        </div>
+
+        <!-- TABELA DE USUÁRIOS -->
+
+        <div class="tabela-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>CPF</th>
+                        <th>Email</th>
+                        <th>Senha</th>
+                        <th>Rua</th>
+                        <th>CEP</th>
+                        <th>Cidade</th>
+                        <th>Estado</th>
+                        <th>Telefone</th>
+                        <th>Ações</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="tabela-corpo">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- PAINEL DE EDIÇÃO -->
+
+        <div
+            class="painel-edicao"
+            id="areaEdicao"
+            style="display: none;"
+        >
+
+            <h2>Editar Dados do Usuário</h2>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input type="text" id="identificador" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label>CPF:</label>
+                    <input type="text" id="identificadorCPF">
+                </div>
+
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" id="nomeAtualizar">
+                </div>
+
+                <div class="form-group">
+                    <label>Sobrenome:</label>
+                    <input type="text" id="sobrenomeAtualizar">
+                </div>
+
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="emailAtualizar">
+                </div>
+
+                <div class="form-group">
+                    <label>Senha:</label>
+                    <input type="password" id="senhaAtualizar">
+                </div>
+
+                <div class="form-group full">
+                    <label>Rua:</label>
+                    <input type="text" id="ruaAtualizar">
+                </div>
+
+                <div class="form-group">
+                    <label>CEP:</label>
+                    <input type="text" id="cepAtualizar">
+                </div>
+
+                <div class="form-group">
+                    <label>Cidade:</label>
+                    <input type="text" id="cidadeAtualizar">
+                </div>
+
+                <div class="form-group">
+                    <label>Estado:</label>
+                    <input type="text" id="estadoAtualizar">
+                </div>
+
+                <div class="form-group">
+                    <label>Telefone:</label>
+                    <input type="text" id="telefoneAtualizar">
+                </div>
+
+            </div>
+
+            <div class="acoes-edicao">
+
+                <button
+                    type="button"
+                    onclick="atualizarDados()"
+                    class="btn-pinterest"
+                >
+                    Salvar Alterações
+                </button>
+
+                <button
+                    type="button"
+                    onclick="cancelarEdicao()"
+                    class="btn-secundario"
+                >
+                    Cancelar
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="adm.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Netflix - Entrar</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.75),
+                    rgba(0, 0, 0, 0.88)
+                ),
+                url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1920");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 450px;
+            margin: 30px auto 60px;
+            padding: 50px 55px;
+            background: rgba(0, 0, 0, 0.88);
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .login-container h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .login-container .subtitulo {
+            margin-bottom: 30px;
+            color: #aaa;
+        }
+
+        .login-container .form-group {
+            margin-bottom: 20px;
+        }
+
+        .login-container .form-group input {
+            padding: 17px;
+            background: #292929;
+            border: 1px solid #555;
+            color: white;
+        }
+
+        .login-container .form-group input:focus {
+            border-color: #e50914;
+            background: #383838;
+        }
+
+        .login-container .btn-pinterest {
+            width: 100%;
+            margin-top: 10px;
+            padding: 16px;
+            background: #e50914;
+            font-size: 17px;
+        }
+
+        .login-container .btn-pinterest:hover {
+            background: #b20710;
+        }
+
+        .login-container .link-rodape {
+            margin-top: 30px;
+            color: #888;
+        }
+
+        .login-container .link-rodape a {
+            color: white;
+        }
+
+        .login-container .link-rodape a:hover {
+            color: #e50914;
+        }
+
+        .login-extra {
+            margin-top: 25px;
+            color: #777;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .login-container {
+                width: 92%;
+                padding: 35px 25px;
+                margin: 20px auto 40px;
+            }
+
+            .login-container h1 {
+                font-size: 27px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            NETFLIX
+        </a>
+
+    </header>
+
+    <!-- LOGIN -->
+
+    <main>
+
+        <div class="login-container">
+
+            <h1>Entrar</h1>
+
+            <p class="subtitulo">
+                Entre na sua conta e aproveite seus filmes e séries favoritos.
+            </p>
+
+            <form id="formLogin">
+
+                <div class="form-group">
+
+                    <label for="email">E-mail</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Digite seu e-mail"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="senha">Senha</label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+                <button type="submit" class="btn-pinterest">
+                    Entrar
+                </button>
+
+            </form>
+
+            <div class="link-rodape">
+
+                Novo por aqui?
+
+                <a href="cadastro.html">
+                    Assine agora.
+                </a>
+
+            </div>
+
+            <p class="login-extra">
+                Esta página é inspirada no visual da Netflix.
+                Seus dados de acesso devem ser protegidos.
+            </p>
+
+        </div>
+
+    </main>
+
+    <!-- AUTENTICAÇÃO -->
+
+    <script>
+
+        document.getElementById('formLogin')
+        .addEventListener('submit', async function(e) {
+
+            e.preventDefault();
+
+            const email = document
+                .getElementById('email')
+                .value
+                .trim();
+
+            const senha = document
+                .getElementById('senha')
+                .value;
+
+            // CONTA DE ADMINISTRADOR
+
+            if (
+                email === 'admin@pinterest.com' &&
+                senha === '123'
+            ) {
+
+                localStorage.setItem(
+                    'usuarioLogado',
+                    JSON.stringify({
+                        nome: 'Administrador',
+                        email: email,
+                        isAdmin: true
+                    })
+                );
+
+                window.location.href = 'boasvindas.html';
+
+                return;
+            }
+
+            // BUSCAR USUÁRIO CADASTRADO
+
+            try {
+
+                const resposta = await fetch('/pessoas/');
+
+                if (!resposta.ok) {
+                    throw new Error('Erro ao consultar usuários.');
+                }
+
+                const dados = await resposta.json();
+
+                const usuario = dados.find(p =>
+                    p.email === email &&
+                    p.senha === senha
+                );
+
+                if (usuario) {
+
+                    localStorage.setItem(
+                        'usuarioLogado',
+                        JSON.stringify(usuario)
+                    );
+
+                    window.location.href = 'boasvindas.html';
+
+                } else {
+
+                    alert('E-mail ou senha incorretos!');
+
+                }
+
+            } catch (erro) {
+
+                console.error(erro);
+
+                alert(
+                    'Erro ao conectar com o servidor. ' +
+                    'Verifique se o JSON Server está funcionando.'
+                );
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

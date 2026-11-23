@@ -1,0 +1,619 @@
+
+/* ========================================
+   NETFLIX MODERN THEME
+   ======================================== */
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --netflix-red: #e50914;
+    --netflix-red-dark: #b20710;
+    --background: #141414;
+    --background-light: #1f1f1f;
+    --card-background: #181818;
+    --input-background: #292929;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --border-color: #383838;
+    --radius: 6px;
+    --transition: 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--text-primary);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+/* ========================================
+   CABEÇALHO
+   ======================================== */
+
+header,
+.navbar {
+    width: 100%;
+    min-height: 75px;
+    padding: 18px 5%;
+    background: rgba(8, 8, 8, 0.96);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    color: var(--netflix-red);
+    font-size: 35px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    transform: scale(1.04);
+}
+
+.logo-icon {
+    display: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--netflix-red);
+}
+
+/* ========================================
+   BOTÕES
+   ======================================== */
+
+button,
+.btn-pinterest,
+.btn-sair,
+.btn-editar,
+.btn-perigo,
+.btn-secundario {
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+button,
+.btn-pinterest {
+    background: var(--netflix-red);
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: bold;
+}
+
+button:hover,
+.btn-pinterest:hover {
+    background: var(--netflix-red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(229, 9, 20, 0.22);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+.btn-sair {
+    background: var(--netflix-red);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.btn-sair:hover {
+    background: var(--netflix-red-dark);
+}
+
+.btn-secundario {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+    padding: 13px 20px;
+    border-radius: 5px;
+}
+
+.btn-secundario:hover {
+    background: #484848;
+}
+
+.btn-editar {
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 8px 13px;
+    border-radius: 4px;
+    margin: 3px;
+}
+
+.btn-perigo {
+    background: #292929;
+    color: #ff5555;
+    border: 1px solid #e50914;
+    padding: 8px 13px;
+    border-radius: 4px;
+    margin: 3px;
+}
+
+.btn-perigo:hover {
+    background: var(--netflix-red);
+    color: white;
+}
+
+/* ========================================
+   CONTAINER E CARDS
+   ======================================== */
+
+.container,
+.login-box,
+.container-admin {
+    background: rgba(24, 24, 24, 0.97);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.45);
+}
+
+.container {
+    width: 92%;
+    max-width: 580px;
+    margin: 40px auto;
+    padding: 40px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 450px;
+    margin: 25px auto;
+    padding: 45px;
+}
+
+.container-admin {
+    width: 94%;
+    max-width: 1500px;
+    margin: 35px auto;
+    padding: 30px;
+}
+
+/* ========================================
+   TÍTULOS
+   ======================================== */
+
+h1,
+h2,
+h3 {
+    color: white;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+.subtitulo {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* ========================================
+   FORMULÁRIOS
+   ======================================== */
+
+form {
+    width: 100%;
+}
+
+.form-grid,
+.grid-campos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full,
+.grid-campos .full-width {
+    grid-column: span 2;
+}
+
+.form-group label {
+    color: #ddd;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 15px;
+    background: var(--input-background);
+    border: 1px solid #555;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    transition: var(--transition);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #999;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--netflix-red);
+    background: #333;
+    box-shadow: 0 0 0 3px rgba(229,9,20,0.12);
+}
+
+input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    accent-color: var(--netflix-red);
+}
+
+/* ========================================
+   FORMULÁRIO DE LOGIN
+   ======================================== */
+
+.login-box h2 {
+    font-size: 32px;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group input {
+    padding: 17px;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.help-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+.help-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* ========================================
+   LINKS
+   ======================================== */
+
+.signup-now,
+.link-rodape {
+    margin-top: 30px;
+    color: #888;
+    font-size: 14px;
+}
+
+.signup-now a,
+.link-rodape a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.signup-now a:hover,
+.link-rodape a:hover {
+    color: var(--netflix-red);
+    text-decoration: underline;
+}
+
+.recaptcha-text {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+/* ========================================
+   ADMINISTRAÇÃO
+   ======================================== */
+
+.busca-box {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.busca-box input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.tabela-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+table {
+    width: 100%;
+    min-width: 1100px;
+    border-collapse: collapse;
+    background: #202020;
+}
+
+thead {
+    background: var(--netflix-red);
+}
+
+th {
+    color: white;
+    padding: 16px 12px;
+    text-align: left;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #383838;
+    color: #ddd;
+    font-size: 13px;
+}
+
+tbody tr {
+    transition: var(--transition);
+}
+
+tbody tr:hover {
+    background: #303030;
+}
+
+/* ========================================
+   PAINEL DE EDIÇÃO
+   ======================================== */
+
+.painel-edicao {
+    margin-top: 35px;
+    padding: 28px;
+    background: #111;
+    border: 1px solid #383838;
+    border-left: 5px solid var(--netflix-red);
+    border-radius: 8px;
+}
+
+.painel-edicao h2 {
+    color: var(--netflix-red);
+    font-size: 23px;
+}
+
+/* ========================================
+   RODAPÉ
+   ======================================== */
+
+footer {
+    width: 100%;
+    padding: 30px 5%;
+    margin-top: 40px;
+    background: #080808;
+    color: #777;
+    text-align: center;
+    font-size: 13px;
+    border-top: 1px solid #292929;
+}
+
+/* ========================================
+   ANIMAÇÕES
+   ======================================== */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container,
+.login-box,
+.container-admin {
+    animation: aparecer 0.5s ease;
+}
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--netflix-red);
+}
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+
+@media (max-width: 768px) {
+
+    header,
+    .navbar {
+        padding: 16px 20px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+
+    .container,
+    .login-box {
+        width: 94%;
+        padding: 30px 22px;
+        margin: 20px auto;
+    }
+
+    .container-admin {
+        width: 96%;
+        padding: 20px 14px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    .form-grid,
+    .grid-campos {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full,
+    .grid-campos .full-width {
+        grid-column: span 1;
+    }
+
+    .busca-box {
+        flex-direction: column;
+    }
+
+    .busca-box input,
+    .busca-box button {
+        width: 100%;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .painel-edicao {
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .form-options {
+        font-size: 11px;
+    }
+
+    .login-box {
+        padding: 28px 18px;
+    }
+
+    .container {
+        padding: 25px 17px;
+    }
+}
+
+/* ========================================
+   ACESSIBILIDADE
+   ======================================== */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

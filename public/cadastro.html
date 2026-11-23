@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Netflix - Criar Conta</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.90)),
+                url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1920");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #141414;
+            color: white;
+        }
+
+        /* CABEÇALHO */
+
+        .navbar {
+            padding: 25px 7%;
+        }
+
+        .logo {
+            color: #e50914;
+            font-size: 38px;
+            font-weight: 900;
+            text-decoration: none;
+            letter-spacing: -2px;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            max-width: 580px;
+            width: 92%;
+            margin: 20px auto 50px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.91);
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,.6);
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .subtitulo {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        /* FORMULÁRIO */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            color: #ddd;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background: #292929;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: .3s;
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .form-group input:focus {
+            border-color: #e50914;
+            background: #383838;
+            box-shadow: 0 0 0 2px rgba(229,9,20,.2);
+        }
+
+        /* BOTÃO */
+
+        .btn-pinterest {
+            width: 100%;
+            padding: 16px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 5px;
+            background: #e50914;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .btn-pinterest:hover {
+            background: #b20710;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(229,9,20,.3);
+        }
+
+        .btn-pinterest:active {
+            transform: scale(.98);
+        }
+
+        /* LINK DE LOGIN */
+
+        .link-rodape {
+            margin-top: 30px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .link-rodape a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .link-rodape a:hover {
+            color: #e50914;
+            text-decoration: underline;
+        }
+
+        /* RODAPÉ */
+
+        footer {
+            background: rgba(0,0,0,.9);
+            color: #777;
+            text-align: center;
+            padding: 25px;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 20px;
+            }
+
+            .logo {
+                font-size: 30px;
+            }
+
+            .container {
+                padding: 30px 22px;
+                margin-top: 10px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            NETFLIX
+        </a>
+    </header>
+
+    <main>
+
+        <div class="container">
+
+            <h1>Criar Conta</h1>
+
+            <p class="subtitulo">
+                Preencha seus dados e comece a aproveitar a Netflix.
+            </p>
+
+            <form id="formCadastro">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome"
+                            placeholder="Seu nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sobrenome">Sobrenome</label>
+                        <input type="text" id="sobrenome"
+                            placeholder="Seu sobrenome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="identificadorCPF">CPF</label>
+                        <input type="text" id="identificadorCPF"
+                            placeholder="000.000.000-00"
+                            maxlength="14" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone"
+                            placeholder="(11) 99999-9999"
+                            maxlength="15" required>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email"
+                            placeholder="Digite seu e-mail" required>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha"
+                            placeholder="Crie uma senha" required>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="rua">Rua e número</label>
+                        <input type="text" id="rua"
+                            placeholder="Digite seu endereço" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep"
+                            placeholder="00000-000"
+                            maxlength="9" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade"
+                            placeholder="Sua cidade" required>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="estado">Estado</label>
+                        <input type="text" id="estado"
+                            placeholder="Ex: MG"
+                            maxlength="2" required>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn-pinterest">
+                    Cadastrar
+                </button>
+
+            </form>
+
+            <div class="link-rodape">
+                Já tem uma conta?
+                <a href="index.html">Entrar agora.</a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Dúvidas? Ligue 0800 591 2876 • Netflix Brasil</p>
+    </footer>
+
+    <script>
+        document.getElementById('formCadastro')
+        .addEventListener('submit', function(e) {
+
+            e.preventDefault();
+
+            const novoUsuario = {
+                nome: document.getElementById('nome').value.trim(),
+                sobrenome: document.getElementById('sobrenome').value.trim(),
+                cpf: document.getElementById('identificadorCPF').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                senha: document.getElementById('senha').value,
+                rua: document.getElementById('rua').value.trim(),
+                cep: document.getElementById('cep').value.trim(),
+                cidade: document.getElementById('cidade').value.trim(),
+                estado: document.getElementById('estado').value.trim(),
+                telefone: document.getElementById('telefone').value.trim()
+            };
+
+            fetch('/pessoas', {
+                method: 'POST',
+
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify(novoUsuario)
+            })
+
+            .then(resposta => {
+
+                if (!resposta.ok) {
+                    throw new Error(
+                        `Erro HTTP: ${resposta.status}`
+                    );
+                }
+
+                return resposta.json();
+
+            })
+
+            .then(() => {
+
+                alert('Cadastro realizado com sucesso!');
+
+                window.location.href = 'index.html';
+
+            })
+
+            .catch(erro => {
+
+                alert(
+                    'Não foi possível cadastrar. ' +
+                    'Verifique se o servidor está funcionando.\n' +
+                    erro.message
+                );
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>
